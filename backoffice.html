@@ -87,9 +87,9 @@ form.validated input:valid {
     <script>
 
 
-const prodId = new URLSearchParams(window.location.search).get("productId")
+const prodId = new URLSearchParams(window.location.search).get("movieId")
 
-const end = prodId ? "https://striveschool-api.herokuapp.com/api/movies" + prodId : "https://striveschool-api.herokuapp.com/api/movies"
+const end = prodId ? "https://striveschool-api.herokuapp.com/api/movies/_" + prodId : "https://striveschool-api.herokuapp.com/api/movies"
 
 const method = prodId ? "PUT" : "POST"
 

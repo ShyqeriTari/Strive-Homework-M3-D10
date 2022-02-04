@@ -236,30 +236,6 @@ margin-bottom: 0px!important;
     <section class="container-fluid">
       <div class="row row-two">
 
-        <div class="col-12 col-sm-3 col-md-2 px-1 mb-2 mb-md-0 animated" style="position: relative;">
-          <img class="img fluid w-100 main-image"src="./assets/media/media11.jpg" alt="film 1">
-          <p style="position:absolute; bottom: 0px; font-size: 12px; font-weight: 900; background-color: black; margin-bottom: 0;">AAAA</p>
-        </div>
-
-        <div class="col-12 col-sm-3 col-md-2 px-1 mb-2 mb-md-0 animated">
-          <img class="img fluid w-100 main-image "src="./assets/media/media12.jpg" alt="film 2">
-        </div>
-
-        <div class="col-12 col-sm-3 col-md-2 px-1 mb-2 mb-md-0 animated">
-          <img class="img fluid w-100 main-image"src="./assets/media/media13.jpg" alt="film 3">
-        </div>
-
-        <div class="col-12 col-sm-3 col-md-2 px-1 mb-2 mb-md-0 animated">
-          <img class="img fluid w-100 main-image "src="./assets/media/media15.jpg" alt="film 4">
-        </div>
-
-        <div class="col-12 col-sm-3 col-md-2 px-1 mb-2 mb-md-0 animated">
-          <img class="img fluid w-100 main-image"src="./assets/media/media17.jpg" alt="film 5">
-        </div>
-
-        <div class="col-12 col-sm-3 col-md-2 px-1 mb-2 mb-md-0 animated">
-          <img class="img fluid w-100 main-image "src="./assets/media/media18.jpg" alt="film 6">
-        </div>
 
       </div>
     </section>
@@ -368,7 +344,14 @@ margin-bottom: 0px!important;
 
 window.onload = () => {
 
-fetch("https://striveschool-api.herokuapp.com/api/movies/Documentary", {
+  getMovies(".row-one", "Documentary")
+
+  getMovies(".row-two", "Comedy")
+}
+
+
+const getMovies = (position, genres) => {
+fetch("https://striveschool-api.herokuapp.com/api/movies/" + genres, {
 
   headers: {
         "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhNmJmZjgyZWExZDAwMTViYjA0NTMiLCJpYXQiOjE2NDM4MDQ1NTMsImV4cCI6MTY0NTAxNDE1M30.CuhoHBbtbf-bhAtwNRt6NLXikvzkGk6UB4Xcj7dTnT8"
@@ -384,7 +367,7 @@ fetch("https://striveschool-api.herokuapp.com/api/movies/Documentary", {
           
     //     </div>
 
-    let rowOne = document.querySelector(".row-one")
+    let rowOne = document.querySelector(position)
 
     data.forEach(element => {
 
@@ -407,9 +390,7 @@ fetch("https://striveschool-api.herokuapp.com/api/movies/Documentary", {
 
   })
 
-
-}
-
+  }
 
   </script>
   

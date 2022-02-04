@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>M3-D10</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <div class="container-fluid mx-5">
+          <a class="navbar-brand" href="homepage.html">Netflix-homework</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="Main-index.html">Homepage</a>
+              </li>
+    
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="backoffice.html">Backoffice</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+   <center> <h2 class="mb-4" style="color: green;">Product details</h2> </center>
+
+   <img class="mb-5" src="" alt="product image" style="width: 100%; max-width: 100%; height: 35vh; object-fit: contain;">
+  
+<div class="container-fluid">
+<div class="row" style="width: 50%; margin: auto;">
+  <center><div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span></center>
+
+</div>
+
+</div>
+  
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+
+const id = new URLSearchParams(window.location.search).get("movieId")
+
+const getProducts = () => {
+fetch(("https://striveschool-api.herokuapp.com/api/movies/Documentary"  ), {
+            headers: {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhNmJmZjgyZWExZDAwMTViYjA0NTMiLCJpYXQiOjE2NDM4MDQ1NTMsImV4cCI6MTY0NTAxNDE1M30.CuhoHBbtbf-bhAtwNRt6NLXikvzkGk6UB4Xcj7dTnT8"
+        }
+        }).then(response => response.json())
+        .then(body => {
+            console.log(body)
+
+            let img = document.querySelector("img")
+                img.src = body[0].imageUrl
+
+                let ul = document.createElement("ul")
+                ul.classList.add("list-group")
+                ul.classList.add("mb-3")
+                let file = document.querySelector(".row")
+                let but = document.createElement("button")
+                but.type = "button"
+                but.style.width = "30%"
+               but.style.color = "white"
+               but.style.backgroundColor = "green"
+                but.innerHTML = ` <a href="./backoffice.html?movieId=${body[0]._id}" style="text-decoration: none; color: white;">Edit Product</a>`
+                file.innerHTML = " "
+                file.appendChild(ul)
+                ul.innerHTML += `
+                 <li class="list-group-item"> <b>Name: </b> ${body[0].name}</li>
+                    <li class="list-group-item"> <b>Description: </b> ${body[0].description}</li>
+                <li class="list-group-item"> <b>Category: </b> ${body[0].category}</li>
+
+                `
+               file.appendChild(but)
+              
+
+        })
+    }
+
+    window.onload = () => {
+        getProducts()
+    }
+
+    </script>
+  </body>
+</html>
