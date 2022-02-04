@@ -322,11 +322,17 @@ margin-bottom: 0px!important;
 
 window.onload = () => {
 
-  getMovies(".row-one", "Documentary")
-
-  getMovies(".row-two", "Comedy")
-
-  getMovies(".row-three", "Action")
+  let arr = ["Documentary", "Comedy", "Action"]
+  let rows = [".row-one", ".row-two", ".row-three"]
+  let drop = document.querySelector(".dropdown-menu")
+  for(let i = 0; i < arr.length; i++){
+  let genresLi = document.createElement("a")
+  genresLi.classList.add("dropdown-item")
+  genresLi.innerText= arr[i]
+  drop.appendChild(genresLi)
+  getMovies(rows[i], arr[i])
+  }
+ 
 }
 
 
