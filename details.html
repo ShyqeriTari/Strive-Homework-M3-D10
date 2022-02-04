@@ -8,11 +8,11 @@
 
     <title>M3-D10</title>
   </head>
-  <body>
+  <body style="background-color: rgb(60,60,60) ;">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <div class="container-fluid mx-5">
-          <a class="navbar-brand" href="homepage.html">Netflix-homework</a>
+          <a class="navbar-brand" href="homepage.html" style="color: crimson;">Netflix-homework</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -30,10 +30,9 @@
         </div>
       </nav>
 
-   <center> <h2 class="mb-4" style="color: green;">Product details</h2> </center>
+   <center> <h2 class="mb-4" style="color: crimson;">Movie details</h2> </center>
 
    <img class="mb-5" src="" alt="product image" style="width: 100%; max-width: 100%; height: 35vh; object-fit: contain;">
-  
 <div class="container-fluid">
 <div class="row" style="width: 50%; margin: auto;">
   <center><div class="spinner-border text-primary" role="status">
@@ -71,14 +70,14 @@ fetch(("https://striveschool-api.herokuapp.com/api/movies/" + category  ), {
                 but.type = "button"
                 but.style.width = "30%"
                but.style.color = "white"
-               but.style.backgroundColor = "green"
+               but.classList.add("bg-primary")
                 but.innerHTML = ` <a href="./backoffice.html?category=${category}&movieId=${body[position]._id}&position=${position}" style="text-decoration: none; color: white;">Edit Product</a>`
                 file.innerHTML = " "
                 file.appendChild(ul)
                 ul.innerHTML += `
-                 <li class="list-group-item"> <b>Name: </b> ${body[position].name}</li>
-                    <li class="list-group-item"> <b>Description: </b> ${body[position].description}</li>
-                <li class="list-group-item"> <b>Category: </b> ${body[position].category}</li>
+                 <li class="list-group-item" style="background-color: rgb(60,60,60); color: white; border-color: white;"> <b style="color:crimson;">Name: </b> ${body[position].name}</li>
+                    <li class="list-group-item" style="background-color: rgb(60,60,60); color: white; border-color: white;"> <b style="color:crimson;">Description: </b> ${body[position].description}</li>
+                <li class="list-group-item" style="background-color: rgb(60,60,60); color: white; border-color: white;"> <b style="color:crimson;">Category: </b> ${body[position].category}</li>
 
                 `
                file.appendChild(but)
