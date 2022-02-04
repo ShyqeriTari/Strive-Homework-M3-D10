@@ -172,7 +172,7 @@ margin-bottom: 0px!important;
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" id="home" href="#">Home</a>
+          <a class="nav-link" id="home" href="Main-index.html">Home</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="#">TV Shows</a>
@@ -221,7 +221,7 @@ margin-bottom: 0px!important;
       </div>
 
     </header>
-    
+    <div class="main">
     <h4 class="mb-3 mt-5">Trending Now</h4>
     <section class="container-fluid">
       
@@ -231,6 +231,7 @@ margin-bottom: 0px!important;
        
 
       </div>
+    </div>
     </section>
     
     
@@ -242,6 +243,7 @@ margin-bottom: 0px!important;
        <div class="spinner-border text-primary" role="status">
         
       </div>
+    </div>
     </section>
     
     
@@ -253,7 +255,9 @@ margin-bottom: 0px!important;
           
 
       </div>
+    </div>
     </section>
+  </div>
 </section>
 
  <center>
@@ -333,11 +337,81 @@ window.onload = () => {
   let genresLi = document.createElement("a")
   genresLi.classList.add("dropdown-item")
   genresLi.innerText= arr[i]
+  genresLi.addEventListener("click", function(){
+    let main = document.querySelector(".main")
+    main.innerHTML = " "
+
+    let title = document.createElement("h4")
+    title.classList.add("mb-3", "mt-5")
+    title.innerText = genresLi.innerText
+    main.appendChild(title)
+    let section = document.createElement("section")
+    section.classList.add("container-fluid")
+    main.appendChild(section)
+    let divO = document.createElement("div")
+    divO.classList.add("row")
+    section.appendChild(divO)
+
+    fetch("https://striveschool-api.herokuapp.com/api/movies/" + genresLi.innerText, {
+
+headers: {
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhNmJmZjgyZWExZDAwMTViYjA0NTMiLCJpYXQiOjE2NDM4MDQ1NTMsImV4cCI6MTY0NTAxNDE1M30.CuhoHBbtbf-bhAtwNRt6NLXikvzkGk6UB4Xcj7dTnT8"
+      }
+}).then(response => 
+response.json()).then(data => {
+
+  console.log(data)
+
+
+  // <div class="col-12 col-sm-3 col-md-2 px-1 mb-2 mb-md-0 animated">
+  //       <img class="img fluid w-100 main-image "src="./assets/media/media1.jpg" alt="film 1">
+        
+  //     </div>
+
+  let rowOne = document.querySelector(".row")
+  rowOne.innerHTML = " "
+
+  data.forEach((element, idx) => {
+    const divs = document.createElement("div")
+    divs.classList.add("col-12", "col-sm-3", "col-md-2", "px-1", "mb-2", "mb-md-0", "animated")
+    rowOne.appendChild(divs)
+    let imgs = document.createElement("img")
+    imgs.classList.add("img", "fluid", "w-100", "main-image" )
+    imgs.style.height = "142px"
+    imgs.src = `${element.imageUrl} `
+    let links = document.createElement("a")
+    links.href = `details.html?category=${element.category}&movieIndex=${idx}`
+    divs.appendChild(links)
+    links.appendChild(imgs)
+    let title = document.createElement("p")
+    title.style.cssText = ` position:absolute; bottom: 0px; font-size: 12px; font-weight: 900; background-color: black; margin-bottom: 0;   width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;`
+    title.innerText = element.name
+    divs.appendChild(title)
+    // <p style="position:absolute; bottom: 0px; font-size: 12px; font-weight: 900; background-color: black; margin-bottom: 0;">AAAA</p>
+    
+  });
+
+})
+
+    // <h4 class="mb-3 mt-5">New Releases</h4>
+    // <section class="container-fluid">      
+    //   <div class="row row-three">
+    //    <div class="spinner-border text-primary" role="status">
+          
+
+    //   </div>
+    // </div>
+    // </section>
+
+
+  })
   drop.appendChild(genresLi)
   getMovies(rows[i], arr[i])
   }
- 
+
 }
+
+
 
 
 const getMovies = (position, genres) => {
