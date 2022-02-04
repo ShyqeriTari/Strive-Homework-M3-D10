@@ -235,8 +235,7 @@ margin-bottom: 0px!important;
     </section>
     
     
-    
-    <h4 class="mb-3 mt-5">Whatch It Again</h4>
+    <h4 class="mb-3 mt-5">Manga</h4>
     <section class="container-fluid">
       <div class="row row-two">
 
@@ -251,6 +250,17 @@ margin-bottom: 0px!important;
     <h4 class="mb-3 mt-5">New Releases</h4>
     <section class="container-fluid">      
       <div class="row row-three">
+       <div class="spinner-border text-primary" role="status">
+          
+
+      </div>
+    </div>
+    </section>
+
+
+    <h4 class="mb-3 mt-5">Whatch It Again</h4>
+    <section class="container-fluid">      
+      <div class="row row-four">
        <div class="spinner-border text-primary" role="status">
           
 
@@ -330,8 +340,8 @@ margin-bottom: 0px!important;
 
 window.onload = () => {
 
-  let arr = ["Documentary", "Comedy", "Action"]
-  let rows = [".row-one", ".row-two", ".row-three"]
+  let arr = ["Documentary", "Manga","Comedy", "Action" ]
+  let rows = [".row-one", ".row-two", ".row-three", ".row-four"]
   let drop = document.querySelector(".dropdown-menu")
   for(let i = 0; i < arr.length; i++){
   let genresLi = document.createElement("a")
@@ -351,7 +361,6 @@ window.onload = () => {
     let divO = document.createElement("div")
     divO.classList.add("row")
     section.appendChild(divO)
-
     fetch("https://striveschool-api.herokuapp.com/api/movies/" + genresLi.innerText, {
 
 headers: {

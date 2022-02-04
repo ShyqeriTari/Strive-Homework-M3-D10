@@ -16,7 +16,7 @@ body {
 }
 
 .animated :hover {
-  width: 120% !important;
+  width: 110% !important;
   position: absolute !important;
   z-index: 9999 !important;
   top: -10px;
