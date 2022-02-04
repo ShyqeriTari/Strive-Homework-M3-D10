@@ -227,7 +227,8 @@ margin-bottom: 0px!important;
       
       <div class="row  row-one">
 
-      
+        <div class="spinner-border text-primary" role="status">
+       
 
       </div>
     </section>
@@ -238,7 +239,8 @@ margin-bottom: 0px!important;
     <section class="container-fluid">
       <div class="row row-two">
 
-
+       <div class="spinner-border text-primary" role="status">
+        
       </div>
     </section>
     
@@ -247,6 +249,8 @@ margin-bottom: 0px!important;
     <h4 class="mb-3 mt-5">New Releases</h4>
     <section class="container-fluid">      
       <div class="row row-three">
+       <div class="spinner-border text-primary" role="status">
+          
 
       </div>
     </section>
@@ -354,10 +358,9 @@ fetch("https://striveschool-api.herokuapp.com/api/movies/" + genres, {
     //     </div>
 
     let rowOne = document.querySelector(position)
+    rowOne.innerHTML = " "
 
     data.forEach((element, idx) => {
-
-
       const divs = document.createElement("div")
       divs.classList.add("col-12", "col-sm-3", "col-md-2", "px-1", "mb-2", "mb-md-0", "animated")
       rowOne.appendChild(divs)
