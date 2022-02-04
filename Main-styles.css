@@ -20,4 +20,5 @@ body {
   position: absolute !important;
   z-index: 9999 !important;
   right: 1%;
+  height: 250px!important;
 }
