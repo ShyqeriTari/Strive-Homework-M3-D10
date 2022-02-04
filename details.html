@@ -48,10 +48,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script>
 
-const id = new URLSearchParams(window.location.search).get("movieId")
+const category = new URLSearchParams(window.location.search).get("category")
+const position = new URLSearchParams(window.location.search).get("movieIndex")
 
 const getProducts = () => {
-fetch(("https://striveschool-api.herokuapp.com/api/movies/Documentary"  ), {
+fetch(("https://striveschool-api.herokuapp.com/api/movies/" + category  ), {
             headers: {
         "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhNmJmZjgyZWExZDAwMTViYjA0NTMiLCJpYXQiOjE2NDM4MDQ1NTMsImV4cCI6MTY0NTAxNDE1M30.CuhoHBbtbf-bhAtwNRt6NLXikvzkGk6UB4Xcj7dTnT8"
         }
@@ -60,7 +61,7 @@ fetch(("https://striveschool-api.herokuapp.com/api/movies/Documentary"  ), {
             console.log(body)
 
             let img = document.querySelector("img")
-                img.src = body[0].imageUrl
+                img.src = body[position].imageUrl
 
                 let ul = document.createElement("ul")
                 ul.classList.add("list-group")
@@ -71,13 +72,13 @@ fetch(("https://striveschool-api.herokuapp.com/api/movies/Documentary"  ), {
                 but.style.width = "30%"
                but.style.color = "white"
                but.style.backgroundColor = "green"
-                but.innerHTML = ` <a href="./backoffice.html?movieId=${body[0]._id}" style="text-decoration: none; color: white;">Edit Product</a>`
+                but.innerHTML = ` <a href="./backoffice.html?category=${category}&movieId=${body[position]._id}&position=${position}" style="text-decoration: none; color: white;">Edit Product</a>`
                 file.innerHTML = " "
                 file.appendChild(ul)
                 ul.innerHTML += `
-                 <li class="list-group-item"> <b>Name: </b> ${body[0].name}</li>
-                    <li class="list-group-item"> <b>Description: </b> ${body[0].description}</li>
-                <li class="list-group-item"> <b>Category: </b> ${body[0].category}</li>
+                 <li class="list-group-item"> <b>Name: </b> ${body[position].name}</li>
+                    <li class="list-group-item"> <b>Description: </b> ${body[position].description}</li>
+                <li class="list-group-item"> <b>Category: </b> ${body[position].category}</li>
 
                 `
                file.appendChild(but)
